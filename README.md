@@ -1,36 +1,52 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# OLA · Estudiantes en Barcelona
 
-## Getting Started
+Prototipo visual para acompañar a estudiantes internacionales en sus primeros pasos en Barcelona. Es una demostración de frontend; no incluye backend ni autenticación.
 
-First, run the development server:
+## Empezar
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+    npm run dev
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abre http://localhost:3000.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Rutas
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- / — bienvenida y presentación del producto.
+- /onboarding — cuestionario de siete preguntas y confirmación.
+- /dashboard — progreso, estado del perfil ficticio y próximos pasos.
+- /tramites — seis guías.
+- /tramites/[slug] — detalle de las guías NIE, TIE, empadronamiento, movilidad, tarjeta sanitaria y vivienda.
+- /checklist — tareas con filtros y progreso temporal.
+- /buscar — búsqueda en guías, documentos y conceptos.
 
-## Learn More
+## Interacciones
 
-To learn more about Next.js, take a look at the following resources:
+El onboarding permite elegir opciones, avanzar, retroceder y revisar el resumen. Las casillas de la checklist se actualizan al instante y el dashboard refleja el progreso mientras la app siga abierta. El buscador filtra al escribir; en el espacio de la aplicación, Cmd/Ctrl + K abre la búsqueda. La barra lateral se transforma en navegación inferior en móvil.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Los cambios son temporales y se pierden al recargar. El perfil de ejemplo usa una estudiante ficticia peruana con alojamiento y NIE confirmados, y TIE y empadronamiento pendientes.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Guías
 
-## Deploy on Vercel
+Cada guía incluye organismo responsable, pasos, documentación, errores frecuentes y enlaces oficiales. Requisitos que varían según la situación aparecen como pendientes de validación. La tarifa de T-usual se presenta con el importe consultado para 2026 y un recordatorio de revisar el precio vigente.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Comprobaciones
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+    npx tsc --noEmit
+    npm run lint
+    npm run build
+
+Los iconos SVG están implementados localmente. No se añadieron dependencias.
+
+## Publicar una demo en GitHub Pages
+
+El workflow de `.github/workflows/deploy-pages.yml` publica la versión estática al hacer push a `main`.
+
+1. Crea un repositorio vacío en GitHub (sin README inicial). En cuentas con GitHub Free, Pages requiere que el repositorio sea público.
+2. En el repositorio, abre **Settings → Pages** y selecciona **GitHub Actions** como fuente de publicación.
+3. Conecta este checkout al repositorio y sube `main`:
+
+       git remote add origin https://github.com/TU_USUARIO/NOMBRE_REPOSITORIO.git
+       git add -A
+       git commit -m "Prepare OLA for GitHub Pages"
+       git push -u origin main
+
+Cuando termine el workflow, GitHub mostrará el enlace en **Settings → Pages**. Los siguientes pushes a `main` publicarán los cambios automáticamente.
